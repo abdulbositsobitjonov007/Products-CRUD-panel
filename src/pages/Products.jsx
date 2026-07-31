@@ -125,15 +125,8 @@ function Products() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-800">Products</h1>
-                    <p className="text-gray-500 mt-1 text-sm md:text-base">Manage your products, pricing and inventory.</p>
                 </div>
                 <div className="flex w-full md:w-auto gap-3">
-                    <button className="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-sm w-full md:w-auto">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                        </svg>
-                        Export
-                    </button>
                     <button 
                         onClick={openAddModal} 
                         className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-5 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-sm w-full md:w-auto whitespace-nowrap"
