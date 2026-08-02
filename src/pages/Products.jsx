@@ -147,10 +147,10 @@ function Products() {
                             <th scope="col" className="px-6 py-4 text-left font-semibold text-gray-500 uppercase tracking-wider">Product Info</th>
                             <th scope="col" className="px-6 py-4 text-left font-semibold text-gray-500 uppercase tracking-wider">Category</th>
                             <th scope="col" className="px-6 py-4 text-left font-semibold text-gray-500 uppercase tracking-wider">Details</th>
-                            <th scope="col" className="px-6 py-4 text-left font-semibold text-gray-500 uppercase tracking-wider">Price</th>
                             <th scope="col" className="px-6 py-4 text-left font-semibold text-gray-500 uppercase tracking-wider">Rating</th>
                             <th scope="col" className="px-6 py-4 text-left font-semibold text-gray-500 uppercase tracking-wider">Weight</th>
                             <th scope="col" className="px-6 py-4 text-left font-semibold text-gray-500 uppercase tracking-wider">Calories</th>
+                            <th scope="col" className="px-6 py-4 text-left font-semibold text-gray-500 uppercase tracking-wider">Price</th>
                             <th scope="col" className="px-6 py-4 text-right font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
