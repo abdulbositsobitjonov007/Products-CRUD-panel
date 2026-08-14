@@ -1,27 +1,40 @@
-import axios from "axios";
-import { useState } from "react";
+// ============================================================
+// usePost.jsx — Хук для POST-запросов (CREATE)
+//
+// ЗАЧЕМ: Отправляет новые данные на сервер.
+// ИЗМЕНЕНИЕ: axiosInstance вместо сырого axios — baseURL, timeout
+//   и interceptors (токен авторизации) добавляются автоматически.
+// ============================================================
 
-const API_URL = import.meta.env.VITE_API_URL;
+import api from "../api/axiosInstance"; // настроенный экземпляр
+import { useState } from "react";
 
 const usePost = (url) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null); // Хранит текст ошибки, если что-то сломалось
+    const [error, setError] = useState(null);
 
+    // postData(body, customUrl) — отправляет body на сервер
+    // customUrl позволяет использовать вложенные маршруты:
+    // например, "categories/3/products" вместо дефолтного "products"
     const postData = async (body, customUrl = url) => {
-        setLoading(true);
-        setError(null);
+        setLoading(true);  // показываем состояние загрузки в UI
+        setError(null);     // сбрасываем предыдущую ошибку
+
         try {
-            const res = await axios.post(`${API_URL}/${customUrl}`, body);
-            setData(res.data);
-            return res.data;
-        } catch (err) { 
-            const errorMsg = err?.response?.data || err?.message || "Something went wrong"; // Достаем понятный текст ошибки от сервера, или дефолтную фразу
+            // POST /customUrl — отправляем body как JSON в теле запроса
+            // api автоматически добавляет baseURL и Content-Type: application/json
+            const res = await api.post(`/${customUrl}`, body);
+            setData(res.data); // сохраняем ответ сервера
+            return res.data;   // возвращаем данные вызывающему коду
+        } catch (err) {
+            // Достаём читаемый текст ошибки из ответа сервера
+            const errorMsg = err?.response?.data || err?.message || "Something went wrong";
             setError(errorMsg);
-            console.error(err);
-            throw err;
+            console.error("[usePost] Error:", err);
+            throw err; // пробрасываем ошибку вверх — чтобы try/catch в компоненте поймал её
         } finally {
-            setLoading(false);
+            setLoading(false); // снимаем состояние загрузки в любом случае
         }
     };
 

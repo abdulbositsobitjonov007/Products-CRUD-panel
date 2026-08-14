@@ -1,12 +1,22 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Sidebar({ setAuth }) {
 
     const navigate = useNavigate();
+    
+    // ===========================================
+    // Шаг 7 из ТЗ: Реализация Logout (Выход)
+    // 
+    // ЧТО ЭТО ПРОИСХОДИТ:
+    // Мы удаляем токен из куки `Cookies.remove("token")` 
+    // Меняем состояние auth на false и перекидываем пользователя на /login
+    // Без токена ProtectedRoute больше его никуда не пустит
+    // ===========================================
     const signOut = () => {
-        localStorage.removeItem("auth");
+        Cookies.remove("token");
         setAuth(false);
-        navigate("/login")
+        navigate("/login");
     }
 
     return (
