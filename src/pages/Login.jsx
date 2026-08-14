@@ -15,8 +15,10 @@ function Login({ setAuth }) {
     const isMockUser = existingUsers.some(user => user.email === email && user.password === password);
 
     if (isMockUser) {
-      // Сохраняем токен в Cookies (имитируем JWT токен от сервера)
-      const mockToken = "header.payload.user_signature";
+      // Генерируем рандомный токен при каждом входе — как настоящий JWT!
+      // crypto.randomUUID() — это встроенная в браузер функция, не требует библиотек.
+      // Она генерирует строку вида: "3b12f1df-5232-4804-897e-638b90f8d9a0"
+      const mockToken = crypto.randomUUID();
       
       // При успешном логине сервер вернет токен. Сохраните его: Cookies.set('token', ...)
       Cookies.set("token", mockToken, { expires: 1 }); // expires: 1 — значит удалить через 1 день
